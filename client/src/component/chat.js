@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../component/chat.css";
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -20,7 +21,13 @@ function Chat({ socket, username, room }) {
       <div className="chat-header">
         <p>Live Chat</p>
       </div>
-      <div className="chat-body"></div>
+      <div className="chat-body">
+        <div className="chat">
+            <p>
+              Your messages...
+            </p>
+        </div>
+      </div>
       <div className="chat-footer">
         <input
           type="text"
