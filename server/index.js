@@ -32,8 +32,8 @@ io.on("connection", (socket) => {
 
   // Listen for the 'send_message' event and broadcast the message to everyone in the room
   socket.on("send_message", (data) => {
-    socket.to(data.room).emit("recive_message", data);
     console.log(`send message data: ${JSON.stringify(data)}`);
+    socket.to(data.room).emit("recive_message", data);
   });
 
   // Listen for the 'disconnect' event and log the socket ID
