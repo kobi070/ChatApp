@@ -20,15 +20,12 @@ function Chat({ socket, username, room }) {
     }
   };
 
-  // We use useEffect as a listener for the chat 
+  // We use useEffect as a listener for the chat
   // whenever ther is any changes to our socket
   // we call this func
-  useEffect(()=>{
-    socket.on("recive_message", (data) =>{
-      
-    })
-
-  }, [socket])
+  useEffect(() => {
+    socket.on("recive_message", (data) => {});
+  }, [socket]);
 
   return (
     <div className="chat">
