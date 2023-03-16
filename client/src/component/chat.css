@@ -1,5 +1,16 @@
-.chat{
+.chat-body{
+    display: grid;
+    justify-content: center;
+    padding: 8px;
+}
+
+.chat.main{
+    width: 450px;
+    background-color: #fff1ff;
     box-sizing: border-box;
-    box-shadow: 2px 2px 2px lightgray;
     border: 2px solid black;
+}
+
+.chat-btn{
+    
 }

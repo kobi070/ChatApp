@@ -22,7 +22,7 @@ function Chat({ socket, username, room }) {
         <p>Live Chat</p>
       </div>
       <div className="chat-body">
-        <div className="chat">
+        <div className="chat main">
             <p>
               Your messages...
             </p>
@@ -30,6 +30,7 @@ function Chat({ socket, username, room }) {
       </div>
       <div className="chat-footer">
         <input
+          className="chat-btn"
           type="text"
           placeholder="Hey..."
           onClick={sendMessage}
