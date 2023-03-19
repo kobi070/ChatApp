@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "../component/chat.css";
-import ScrollToBottom from "react-scroll-to-bottom";
+import React, { useEffect, useState } from "react"; // import React and the necessary hooks
+import "../component/chat.css"; // import the styles for the component
+import ScrollToBottom from "react-scroll-to-bottom"; // import the third-party library
 
-function Chat({ socket, username, room }) {
-  const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
-  const sendMessage = async () => {
-    if (currentMessage !== "") {
-      // console.log(`${currentMessage} is not empty !`);
-      const messageData = {
+function Chat({ socket, username, room }) { // define the Chat component that accepts socket, username and room as props
+  const [currentMessage, setCurrentMessage] = useState(""); // define a state for the current message
+  const [messageList, setMessageList] = useState([]); // define a state for the list of messages
+
+  const sendMessage = async () => { // define the function to send a message
+    if (currentMessage !== "") { // check if the message is not empty
+      const messageData = { // create a new message object with room, author, message and time
         room: room,
         author: username,
         message: currentMessage,
@@ -17,37 +17,31 @@ function Chat({ socket, username, room }) {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      // console.log(JSON.stringify(messageData));
-      await socket.emit("send_message", messageData);
-      setCurrentMessage((list) => [list, ...messageData]);
-      setCurrentMessage("");
+      await socket.emit("send_message", messageData); // emit the message to the server
+      setMessageList((list) => [...list, messageData]); // update the message list with the new message
+      setCurrentMessage(""); // clear the current message
     }
   };
 
-  // We use useEffect as a listener for the chat
-  // whenever ther is any changes to our socket
-  // we call this func
-  useEffect(() => {
-    socket.on("recive_message", (data) => {
-      console.log(data);
-      setMessageList((list) => [list, ...data]);
+  useEffect(() => { // use useEffect to listen for incoming messages
+    socket.on("recive_message", (data) => { // listen for incoming messages with the "receive_message" event
+      console.log(data); // log the incoming message data to the console
+      setMessageList((list) => [...list, data]); // update the message list with the new message data
     });
-  }, [socket]);
+  }, [socket]); // specify the socket as a dependency so the effect only runs when the socket changes
 
-  return (
+  return ( // return the chat component
     <div className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>Live Chat - Room {room}</p>
       </div>
       <div className="chat-body">
-        <ScrollToBottom className="chat-container"
-        >
-          {messageList.map((messageContent) => {
-            console.log(messageContent.map())
+        {/* use the ScrollToBottom component to automatically scroll to the bottom of the chat */}
+        <ScrollToBottom className="chat-container">{messageList.map((messageContent) => { // map over the messageList and render each message
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
+                id={username === messageContent.author ? "you" : "other"} // set the ID based on the author of the message
               >
                 <div>
                   <div className="message-content">
@@ -68,13 +62,14 @@ function Chat({ socket, username, room }) {
           className="chat-btn"
           type="text"
           placeholder="Hey..."
-          onChange={(event) => setCurrentMessage(event.target.value)}
-          onKeyDown={(event) => event.key === "Enter" && sendMessage()}
+          onChange={(event) => setCurrentMessage(event.target.value)} // update the current message as the user types
+          onKeyDown={(event) => event.key === "Enter" && sendMessage()} // send the message when the user presses Enter
         ></input>
-        <button onClick={sendMessage}>&#9658;</button>
+        {/*  use a button to send the message */}
+        <button onClick={sendMessage}>&#9658;</button>  
       </div>
     </div>
   );
 }
 
-export default Chat;
+export default Chat; // export the Chat component for use in other parts of the app
