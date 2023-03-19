@@ -12,6 +12,7 @@ socket.on("connection", () => {
 function App() {
   const [username, setUserName] = useState("");
   const [room, setRoom] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -20,6 +21,7 @@ function App() {
   };
   return (
     <div className="App">
+      {!showChat ? 
       <div className="joinChatContainer">
         <h3 className="join">Join a Chat</h3>
         <input
@@ -40,7 +42,9 @@ function App() {
           Join a Room !
         </button>
       </div>
+      :
       <Chat socket={socket} username={username} room={room} />
+        }
     </div>
   );
 }

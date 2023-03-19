@@ -40,8 +40,10 @@ function Chat({ socket, username, room }) {
         <p>Live Chat</p>
       </div>
       <div className="chat-body">
-        <ScrollToBottom className="chat-container">
+        <ScrollToBottom className="chat-container"
+        >
           {messageList.map((messageContent) => {
+            console.log(messageContent.map())
             return (
               <div
                 className="message"
