@@ -12,35 +12,44 @@ socket.on("connection", () => {
 function App() {
   const [username, setUserName] = useState("");
   const [room, setRoom] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
+      setShowChat(true);
     }
   };
   return (
     <div className="App">
-      <div className="joinChatContainer">
-        <h3 className="join">Join a Chat</h3>
-        <input
-          className="username"
-          placeholder="John..."
-          onChange={(event) => {
-            setUserName(event.target.value);
-          }}
-        ></input>
-        <input
-          className="room id"
-          placeholder="Room ID..."
-          onChange={(event) => {
-            setRoom(event.target.value);
-          }}
-        ></input>
-        <button className="join-btn" onClick={joinRoom}>
-          Join a Room !
-        </button>
-      </div>
-      <Chat socket={socket} username={username} room={room} />
+      {!showChat ? (
+        <div className="joinChatContainer">
+          <h3 className="join">Join a Chat</h3>
+          <input
+            className="username"
+            placeholder="John..."
+            onChange={(event) => {
+              setUserName(event.target.value);
+            }}
+          ></input>
+          <input
+            className="room id"
+            placeholder="Room ID..."
+            onChange={(event) => {
+              setRoom(event.target.value);
+            }}
+          ></input>
+          <button
+            className="join-btn"
+            onClick={joinRoom}
+            onKeyDown={(event) => event.key === "Enter"}
+          >
+            Join a Room !
+          </button>
+        </div>
+      ) : (
+        <Chat socket={socket} username={username} room={room} />
+      )}
     </div>
   );
 }
