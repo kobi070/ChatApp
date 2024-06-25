@@ -1,7 +1,7 @@
 # ChatApp using React, Express, and Socket.IO
 
 This is a simple chat application built using React, Express, and Socket.IO. The application allows users to join a chat room and send messages in real-time. The messages are displayed in the chat window and are always scrolled to the bottom.
-###Watch Demo - https://kobi070.github.io/ChatApp
+### Watch Demo - https://kobi070.github.io/ChatApp
 
 ### Features
 
