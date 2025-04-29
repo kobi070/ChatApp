@@ -5,7 +5,7 @@
 FROM node:slim
 
 # Create the app directory
-WORKDIR /server
+WORKDIR /client
 
 # Copy package.json and package-lock.json
 COPY package*.json .
@@ -14,10 +14,11 @@ COPY package*.json .
 RUN npm install
 
 # Copy index.js
-COPY index.js .
+COPY /src /client/src
+COPY /public /client/public
 
-# Expose the port the server runs on it
-EXPOSE 3001
+# Expose react app port
+EXPOSE 3000
 
 # For test usage we will npm install dependencies
 CMD [ "npm", "start" ]
