@@ -17,5 +17,8 @@ RUN npm install
 COPY /src /client/src
 COPY /public /client/public
 
+# Expose react app port
+EXPOSE 3000
+
 # For test usage we will npm install dependencies
 CMD [ "npm", "start" ]
