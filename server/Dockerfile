@@ -13,5 +13,8 @@ COPY package*.json .
 # Install app dependencies
 RUN npm install
 
+# Copy index.js
+COPY index.js .
+
 # For test usage we will npm install dependencies
 CMD [ "npm", "start" ]
