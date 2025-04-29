@@ -18,6 +18,12 @@ This is a simple chat application built using React, Express, and Socket.IO. The
 4. Start the client by running `npm start` in the `client` directory
 5. Open `http://localhost:3000` in your browser to access the chat application
 
+or
+if you have docker && docker compose installed you can run this
+```bash
+  docker compose -f docker-compose.yaml up -d
+```
+
 ## How it Works
 
 The application consists of two main parts: the server-side and the client-side. 
