@@ -16,5 +16,8 @@ RUN npm install
 # Copy index.js
 COPY index.js .
 
+# Expose the port the server runs on it
+EXPOSE 3001
+
 # For test usage we will npm install dependencies
 CMD [ "npm", "start" ]
