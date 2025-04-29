@@ -1,0 +1,26 @@
+services:
+  web-service:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    depends_on:
+      - backend-service
+    container_name: chatapp-web
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  backend-service:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: chatapp-backend
+    ports:
+      - "3001:3001"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
