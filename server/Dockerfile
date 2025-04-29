@@ -8,12 +8,10 @@ FROM node:slim
 WORKDIR /server
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package*.json .
 
 # Install app dependencies
-RUN npm install --silent
+RUN npm install
 
-# Copy the rest of the app code
-COPY index.js ./
-
-EXPOSE 3000
+# For test usage we will npm install dependencies
+CMD [ "npm", "start" ]
