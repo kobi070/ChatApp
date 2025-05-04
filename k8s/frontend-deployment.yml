@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: chatapp-frontend-service
-          image: kobi070/chatapp-web-servie:latest
+          image: kobi070/chatapp-web-service
           resources:
             requests:
               memory: "64Mi"
