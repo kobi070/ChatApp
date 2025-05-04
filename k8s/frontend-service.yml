@@ -11,5 +11,5 @@ spec: # Specify the spec
   - protocol: TCP # Specify the protocol
     port: 3000 # Port that the service will expose
     targetPort: 3000 # Port that the container is listening on
-    nodePort: 3000  # Optional: specify a NodePort for external access
+    nodePort: 30001  # Optional: specify a NodePort for external access
   type: NodePort  # Internal communication, or use LoadBalancer for external exposure

@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chat-frontend-deployment
-  labels:
-    app: chat-frontend
+  name: chatapp-web-servie
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: chat-frontend
+      app: chatapp-web-servie
   template:
     metadata:
       labels:
-        app: chat-frontend
-      spec:
-        containers:
-          - name: chat-frontend
-            image: kobi070/chatapp-web-servie:latest
-            ports:
-              - containerPort: 3000
+        app: chatapp-web-servie
+    spec:
+      containers:
+      - name: chatapp-web-service
+        image: kobi070/chatapp-web-servie:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
