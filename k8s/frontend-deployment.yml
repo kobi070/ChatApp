@@ -16,6 +16,6 @@ spec:
       spec:
         containers:
           - name: chat-frontend
-            image: kobi070/chat-web-servie:latest
+            image: kobi070/chatapp-web-servie:latest
             ports:
               - containerPort: 3000
