@@ -1,0 +1,15 @@
+apiVersion: v1 # Specify the API version
+kind: Service # Specify the kind of resource
+# This is a Service resource
+# The Service resource is used to expose the application
+metadata: # Specify the metadata
+  name: chat-frontend-service # Name of the service
+spec: # Specify the spec
+  selector: # Specify the selector - this is used to select the pods that this service will route traffic to
+    app: chat-frontend-service # This should match the labels of the pods
+  ports:
+  - protocol: TCP # Specify the protocol
+    port: 3000 # Port that the service will expose
+    targetPort: 3000 # Port that the container is listening on
+    nodePort: 3000  # Optional: specify a NodePort for external access
+  type: NodePort  # Internal communication, or use LoadBalancer for external exposure
